@@ -43,7 +43,7 @@ export class Customer {
                     break
             }
 
-            // add freqent renter points
+            // add frequent renter points
             frequentRenterPoints++
             // add bonus for two day new release rental
             if ((each.movie.priceCode === Movie.NEW_RELEASE) && (each.daysRented > 1)) {
