@@ -1,0 +1,54 @@
+[
+  {
+    "title": "Fire of Love",
+    "priceCode":1
+  },
+  {
+    "title": "Cow",
+    "priceCode":1
+  },
+  {
+    "title": "Boiling Point",
+    "priceCode":1
+  },
+  {
+    "title": "Wheel of Fortune and Fantasy",
+    "priceCode":1
+  },
+  {
+    "title": "Tenet",
+    "priceCode": 0
+  },
+  {
+    "title": "Hubie Halloween",
+    "priceCode": 0
+  },
+  {
+    "title": "The Night House",
+    "priceCode": 0
+  },
+  {
+    "title": "Enola Holmes",
+    "priceCode": 0
+  },
+  {
+    "title": "Beauty And The Beast",
+    "priceCode": 2
+  },
+  {
+    "title": "Frozen",
+    "priceCode": 2
+  },
+  {
+    "title": "Mulan",
+    "priceCode": 2
+  },
+  {
+    "title": "Maleficent",
+    "priceCode": 2
+  },
+  {
+    "title": "Luca",
+    "priceCode": 2
+  }
+]
