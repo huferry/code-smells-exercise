@@ -1,0 +1,49 @@
+{
+  "customer": {
+    "name": "Vincent Doukie",
+    "rentals": [
+      {
+        "movie": {
+          "title":"Mission Impossible",
+          "priceCode": 0
+        },
+        "days": 5
+      },
+      {
+        "movie": {
+          "title":"The Shawshank Redemption",
+          "priceCode": 0
+        },
+        "days": 3
+      },
+      {
+        "movie": {
+          "title":"Ice Age",
+          "priceCode": 2
+        },
+        "days": 7
+      },
+      {
+        "movie": {
+          "title":"Mulan",
+          "priceCode": 2
+        },
+        "days": 2
+      },
+      {
+        "movie": {
+          "title":"Ticket to Paradise",
+          "priceCode": 1
+        },
+        "days": 3
+      },
+      {
+        "movie": {
+          "title":"Top Gun: Mavrick",
+          "priceCode": 1
+        },
+        "days": 2
+      }
+    ]
+  }
+}
