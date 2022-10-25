@@ -10,9 +10,7 @@ services:
       - TZ=Europe/London
       - PASSWORD=password
       - SUDO_PASSWORD=password
-      - DEFAULT_WORKSPACE=/config/workspace
-    volumes:
-      - /path/to/appdata/config:/config
+      - DEFAULT_WORKSPACE=/repos
     ports:
       - "8443:8443"
     restart: unless-stopped
