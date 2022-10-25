@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "run": "npx ts-node example.ts",
-    "test": "jest"
+    "example": "npx ts-node example.ts",
+    "test": "npx jest"
   },
   "keywords": [],
   "author": "",

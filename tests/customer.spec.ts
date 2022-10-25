@@ -18,7 +18,7 @@ describe('statement', () => {
 
     it('with 7 days regular movie, should cost 9.5 and add 1 frequent renter point', () => {
         // arrange
-        const movie = new Movie('Mission Impossible', Movie.REGULAR)
+        const movie = Movie.CreateRegular('Mission Impossible')
         const rental = new Rental(movie, 7)
 
         const customer = new Customer('Boxy Batting')
@@ -34,7 +34,7 @@ describe('statement', () => {
 
     it('with 1 day regular movie, should cost 1', () => {
         // arrange
-        const movie = new Movie('Days of The Thunder', Movie.REGULAR)
+        const movie = Movie.CreateRegular('Days of The Thunder')
         const rental = new Rental(movie, 1)
 
         const customer = new Customer('Boxy Batting')
@@ -49,7 +49,7 @@ describe('statement', () => {
 
     it('with 2 day new release movie, should earn 2 frequent renter points', () => {
         // arrange
-        const movie = new Movie('Top Gun: Mavrick', Movie.NEW_RELEASE)
+        const movie = Movie.CreateNewRelease('Top Gun: Mavrick')
         const rental = new Rental(movie, 2)
 
         const customer = new Customer('Boxy Batting')
@@ -64,7 +64,7 @@ describe('statement', () => {
 
     it('with 3 days new release, should cost 21 and add 2 frequent renter point', () => {
         // arrange
-        const movie = new Movie('Ticket to Paradise', Movie.NEW_RELEASE)
+        const movie = Movie.CreateNewRelease('Ticket to Paradise')
         const rental = new Rental(movie, 7)
 
         const customer = new Customer('Boxy Batting')
@@ -80,13 +80,13 @@ describe('statement', () => {
 
     it('with 3 movies, should state total amount', () => {
         // arrange
-        const movie1 = new Movie('Ticket to Paradise', Movie.NEW_RELEASE)
+        const movie1 = Movie.CreateNewRelease('Ticket to Paradise')
         const rental1 = new Rental(movie1, 3)
 
-        const movie2 = new Movie('Gone with The Wind', Movie.REGULAR)
+        const movie2 = Movie.CreateRegular('Gone with The Wind')
         const rental2 = new Rental(movie2, 5)
 
-        const movie3 = new Movie('Shrek', Movie.CHILDRENS)
+        const movie3 = Movie.CreateChildrens('Shrek')
         const rental3 = new Rental(movie3, 1)
 
         const customer = new Customer('Boxy Batting')

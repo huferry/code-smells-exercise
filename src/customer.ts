@@ -19,29 +19,7 @@ export class Customer {
         result += 'Rental Record for ' + this.name + '\n'
 
         this._rentals.forEach(each => {
-            let thisAmount = 0
-
-            // determine amounts for each line
-            switch(each.movie.priceCode) {
-                case Movie.REGULAR:
-                    // 2 euros for the first 2 days. 1.5 euros for any extra day.
-                    thisAmount += 2
-                    if (each.daysRented > 2) {
-                        thisAmount += (each.daysRented - 2) * 1.5
-                    }
-                    break
-                case Movie.NEW_RELEASE:
-                    // 3 euros per day
-                    thisAmount += each.daysRented * 3
-                    break
-                case Movie.CHILDRENS:
-                    // 1.5 euros for the first 3 days. 1.5 euros for each following day
-                    thisAmount += 1.5
-                    if (each.daysRented > 3) {
-                        thisAmount += (each.daysRented - 3) * 1.5
-                    }
-                    break
-            }
+            let thisAmount = each.calcPrice()
 
             // add frequent renter points
             frequentRenterPoints++
