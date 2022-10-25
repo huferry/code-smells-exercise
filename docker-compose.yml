@@ -12,5 +12,5 @@ services:
       - SUDO_PASSWORD=password
       - DEFAULT_WORKSPACE=/repos/group1
     ports:
-      - "8443:8443"
+      - "80:8443"
     restart: unless-stopped
