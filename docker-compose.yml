@@ -10,7 +10,7 @@ services:
       - TZ=Europe/London
       - PASSWORD=password
       - SUDO_PASSWORD=password
-      - DEFAULT_WORKSPACE=/repos/group1
+      - DEFAULT_WORKSPACE=/config/workspace
     ports:
       - "80:8443"
     restart: unless-stopped
