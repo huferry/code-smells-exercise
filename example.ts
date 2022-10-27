@@ -1,19 +1,21 @@
 import {Customer} from "./src/customer";
-import {Movie} from "./src/movie";
+import {Movie,NewMovie,RegularMovie,ChildrensMovie,PornoMovie} from "./src/movie";
 import * as fs from "fs"
 import {Rental} from "./src/rental";
 
 async function main() {
-    const movies: Movie[] = await readData<Movie[]>('./data/movies.json')
+    const movies: Movie[] = await new_readData('./data/movies.json')
     const newReleases = movies.filter(m => m.priceCode === 1)
     const children = movies.filter(m => m.priceCode === 2)
     const regular = movies.filter(m => m.priceCode === 0)
+    const porno = movies.filter(m => m.priceCode === 4)
 
     const customer = new Customer('John Baxter')
     customer.addRental(new Rental(newReleases[0], 2))
     customer.addRental(new Rental(newReleases[1], 5))
     customer.addRental(new Rental(children[3], 4))
     customer.addRental(new Rental(regular[1], 2))
+    customer.addRental(new Rental(porno[0],12))
 
     console.log(customer.statement())
 
@@ -38,4 +40,14 @@ async function readFile(filename: string) {
 
 async function readData<T>(filename: string): Promise<T> {
     return JSON.parse(await readFile(filename)) as T
+}
+
+async function new_readData(filename: string): Promise<Movie[]>{
+    let lijst = JSON.parse(await readFile(filename))
+    return lijst.map((data:any) => {
+        if (data.type === "Nieuw") return new NewMovie(data.title, data.priceCode)
+        if (data.type === "Regular") return new RegularMovie(data.title, data.priceCode)
+        if (data.type === "Kinderfilm") return new ChildrensMovie(data.title, data.priceCode)
+        if (data.type === "Porno") return new PornoMovie(data.title, data.priceCode)
+    }  )
 }

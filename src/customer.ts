@@ -1,6 +1,7 @@
 import {Rental} from "./rental";
 import {Movie} from "./movie";
 import {EmailSender} from "./emailSender";
+import { forEachLeadingCommentRange } from "typescript";
 
 export class Customer {
     private readonly _rentals: Rental[] = []
@@ -10,6 +11,30 @@ export class Customer {
 
     public addRental(rental: Rental) {
         this._rentals.push(rental)
+    }
+
+  private bepaal_hoeveel_te_betalen(huur: Rental){
+        let bedrag = 0
+        if (huur.movie.priceCode === Movie.REGULAR) { 
+            bedrag += 2
+            if (huur.daysRented > 2) {
+                bedrag += (huur.daysRented - 2) * 1.5
+            }
+            console.log ('functie: regular')
+            console.log(bedrag)
+        }
+        if (huur.movie.priceCode === Movie.NEW_RELEASE) {
+            bedrag += huur.daysRented * 3
+            console.log ('functie: nieuwe release')
+            console.log(bedrag)                   
+        }
+        if (huur.movie.priceCode === Movie.CHILDRENS) {
+            bedrag += 1.5
+            if (huur.daysRented > 3) { bedrag += (huur.daysRented -3)*1.5}
+            console.log ('functie: kinderfilm')
+            console.log(bedrag)            
+        }
+        return bedrag
     }
 
     public statement(): string {
@@ -22,6 +47,7 @@ export class Customer {
             let thisAmount = 0
 
             // determine amounts for each line
+            /* 
             switch(each.movie.priceCode) {
                 case Movie.REGULAR:
                     // 2 euros for the first 2 days. 1.5 euros for any extra day.
@@ -29,10 +55,14 @@ export class Customer {
                     if (each.daysRented > 2) {
                         thisAmount += (each.daysRented - 2) * 1.5
                     }
+                    console.log ('Oorspronkelijk: regular')
+                    console.log(thisAmount)
                     break
                 case Movie.NEW_RELEASE:
                     // 3 euros per day
                     thisAmount += each.daysRented * 3
+                    console.log ('Oorspronkelijk: nieuwe release')
+                    console.log(thisAmount)                   
                     break
                 case Movie.CHILDRENS:
                     // 1.5 euros for the first 3 days. 1.5 euros for each following day
@@ -40,8 +70,15 @@ export class Customer {
                     if (each.daysRented > 3) {
                         thisAmount += (each.daysRented - 3) * 1.5
                     }
+                    console.log ('Oorspronkelijk: kinderfilm')
+                    console.log(thisAmount)
                     break
             }
+            */
+            
+            // thisAmount = this.bepaal_hoeveel_te_betalen(each)
+
+            thisAmount = each.movie.bepaal_prijs(each.daysRented)
 
             // add frequent renter points
             frequentRenterPoints++
@@ -62,7 +99,6 @@ export class Customer {
         result += 'Amount owed is € ' + totalAmount + '\n'
         result += 'You earned ' + frequentRenterPoints + ' frequent renter points\n'
         result += '--------------- end statement ---------------\n'
-
         return result
     }
 

@@ -1,54 +1,72 @@
 [
   {
     "title": "Fire of Love",
-    "priceCode":1
+    "priceCode":1,
+    "type": "Nieuw"
   },
   {
     "title": "Cow",
-    "priceCode":1
+    "priceCode":1,
+    "type": "Nieuw"
   },
   {
     "title": "Boiling Point",
-    "priceCode":1
+    "priceCode":1,
+    "type": "Nieuw"
   },
   {
     "title": "Wheel of Fortune and Fantasy",
-    "priceCode":1
+    "priceCode":1,
+    "type": "Nieuw"
   },
   {
     "title": "Tenet",
-    "priceCode": 0
+    "priceCode": 0,
+    "type": "Regular"
   },
   {
     "title": "Hubie Halloween",
-    "priceCode": 0
+    "priceCode": 0,
+    "type": "Regular"
   },
   {
     "title": "The Night House",
-    "priceCode": 0
+    "priceCode": 0,
+    "type": "Regular"
   },
   {
     "title": "Enola Holmes",
-    "priceCode": 0
+    "priceCode": 0,
+    "type": "Regular"
   },
   {
     "title": "Beauty And The Beast",
-    "priceCode": 2
+    "priceCode": 2,
+    "type": "Kinderfilm"
   },
   {
     "title": "Frozen",
-    "priceCode": 2
+    "priceCode": 2,
+    "type": "Kinderfilm"
   },
   {
     "title": "Mulan",
-    "priceCode": 2
+    "priceCode": 2,
+    "type": "Kinderfilm"
   },
   {
     "title": "Maleficent",
-    "priceCode": 2
+    "priceCode": 2,
+    "type": "Kinderfilm"
   },
   {
     "title": "Luca",
-    "priceCode": 2
-  }
+    "priceCode": 2,
+    "type": "Kinderfilm"
+  },
+ {
+    "title": "deep throat",
+    "priceCode": 4,
+    "type": "Porno"
+ }
 ]
