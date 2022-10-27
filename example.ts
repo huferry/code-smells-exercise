@@ -10,8 +10,9 @@ async function main() {
     const regular = movies.filter(m => m.priceCode === 0)
 
     const customer = new Customer('John Baxter')
+
     customer.addRental(new Rental(newReleases[0], 2))
-    customer.addRental(new Rental(newReleases[1], 5))
+    customer.addRental(new Rental (newReleases[1], 5))
     customer.addRental(new Rental(children[3], 4))
     customer.addRental(new Rental(regular[1], 2))
 
@@ -19,10 +20,8 @@ async function main() {
 
     customer.sendPromotion(
         'Happy Schwarzenegger Weeks!',
-        `The Expendables 8: I can't afford it`,
-        Movie.NEW_RELEASE,
-        'Terminator 2: The Judgment Day',
-        Movie.REGULAR,
+        new Movie( `The Expendables 8: I can't afford it`, Movie.NEW_RELEASE),
+        new Movie ('Terminator 2: The Judgment Day', Movie.REGULAR),
         new Date(2028, 3, 1),
         new Date(2028, 5, 1),
         10,

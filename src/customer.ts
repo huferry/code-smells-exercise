@@ -19,30 +19,10 @@ export class Customer {
         result += 'Rental Record for ' + this.name + '\n'
 
         this._rentals.forEach(each => {
-            let thisAmount = 0
-
             // determine amounts for each line
-            switch(each.movie.priceCode) {
-                case Movie.REGULAR:
-                    // 2 euros for the first 2 days. 1.5 euros for any extra day.
-                    thisAmount += 2
-                    if (each.daysRented > 2) {
-                        thisAmount += (each.daysRented - 2) * 1.5
-                    }
-                    break
-                case Movie.NEW_RELEASE:
-                    // 3 euros per day
-                    thisAmount += each.daysRented * 3
-                    break
-                case Movie.CHILDRENS:
-                    // 1.5 euros for the first 3 days. 1.5 euros for each following day
-                    thisAmount += 1.5
-                    if (each.daysRented > 3) {
-                        thisAmount += (each.daysRented - 3) * 1.5
-                    }
-                    break
-            }
 
+            let thisAmount = this.getPrice(each.daysRented, each.movie.priceCode);
+          
             // add frequent renter points
             frequentRenterPoints++
             // add bonus for two day new release rental
@@ -66,59 +46,54 @@ export class Customer {
         return result
     }
 
-    public sendPromotion(
+    private getPrice(daysRented: number, priceCode: number): number{
+        switch(priceCode) {
+            case Movie.REGULAR:
+                // 2 euros for the first 2 days. 1.5 euros for any extra day.
+                if (daysRented > 2) {
+                    return 2+(daysRented - 2) * 1.5
+                }
+                return 2
+            case Movie.NEW_RELEASE:
+                // 3 euros per day
+                return daysRented * 3
+            case Movie.CHILDRENS:
+                // 1.5 euros for the first 3 days. 1.5 euros for each following day
+                if (daysRented > 3) {
+                    return 1.5 + (daysRented - 3) * 1.5
+                }
+                return 1.5
+            default:
+                return 0
+        }
+    }
+
+    public GetLetter(
         promotionTitle: string,
-        movieTitle1: string,
-        moviePriceCode1: number,
-        movieTitle2: string,
-        moviePriceCode2: number,
+        movie1: Movie,
+        movie2: Movie,
         startPromotionDate: Date,
         endPromotionDate: Date,
         discountInPercent: number,
-        extraFrequentRenterPoints: number,
-        customerEmailAddress: string): void {
+        extraFrequentRenterPoints: number){
 
         let letter = 'Dear ' + this.name + ',\n\n'
 
         letter += 'We would gladly announce our newest personal offer in the "' + promotionTitle +'".\n'
         letter += 'Special for this offer:\n'
 
-        let movieType1
-        switch(moviePriceCode1) {
-            case Movie.REGULAR:
-                movieType1 = '(regular)'
-                break
-            case Movie.CHILDRENS:
-                movieType1 = '(childrens)'
-                break
-            case Movie.NEW_RELEASE:
-                movieType1 = '(new release)'
-        }
-
         // add the first promotion movie
-        letter += '\t -' + movieTitle1 + ' ' + movieType1 + '\n'
-
-        let movieType2
-        switch(moviePriceCode2) {
-            case Movie.REGULAR:
-                movieType2 = '(regular)'
-                break
-            case Movie.CHILDRENS:
-                movieType2 = '(childrens)'
-                break
-            case Movie.NEW_RELEASE:
-                movieType2 = '(new release)'
-        }
+        letter += '\t -' + movie1.title + ' ' + movie1.movieType + '\n'
 
         // add second promotion movie
-        letter += '\t -' + movieTitle2 + ' ' + movieType2 + '\n'
+        letter += '\t -' + movie2.title + ' ' + movie2.movieType + '\n'
+
         // add empty line
         letter += '\n'
 
         // add discount
         if (discountInPercent > 0) {
-            letter += 'For renting this movie, you will get a ' +
-                discountInPercent.toFixed(0) + '% discount.\n'
+            letter += 'For renting this movie, you will get a ' + discountInPercent.toFixed(0) + '% discount.\n'
         }
 
         // add extra frequent renter points
@@ -128,10 +103,25 @@ export class Customer {
 
         letter += '\nBe quick, because this promotion will start on ' +
             startPromotionDate.toLocaleDateString() +
-            ' and valid until ' + endPromotionDate.toLocaleDateString() +
-            '\n'
+            ' and valid until ' + endPromotionDate.toLocaleDateString() + '\n'
 
-        letter += '\nSincerely,\nGlow Parker\n(Chief Marketing Officer)'
+        letter += '\nSincerely,\nGlow Parker\n(Chief Marketing Officer)';
+
+        return letter;
+    }
+
+    public sendPromotion(
+        promotionTitle: string,
+        movie1: Movie,
+        movie2: Movie,
+        startPromotionDate: Date,
+        endPromotionDate: Date,
+        discountInPercent: number,
+        extraFrequentRenterPoints: number,
+        customerEmailAddress: string): void {
+        
+        let letter = this.GetLetter(promotionTitle, movie1, movie2, startPromotionDate,
+                endPromotionDate, discountInPercent, extraFrequentRenterPoints)
 
         let sender = new EmailSender()
 
