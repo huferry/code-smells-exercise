@@ -2,6 +2,8 @@ import {Customer} from "./src/customer";
 import {Movie} from "./src/movie";
 import * as fs from "fs"
 import {Rental} from "./src/rental";
+import {Promotion} from "./src/promotion"
+import { MovieType } from "./src/movieType";
 
 async function main() {
     const movies: Movie[] = await readData<Movie[]>('./data/movies.json')
@@ -17,7 +19,10 @@ async function main() {
 
     console.log(customer.statement())
 
-    customer.sendPromotion(
+    let promotion = new Promotion(customer)
+    let movieType = new MovieType(moviePriceCode)
+
+    promotion.sendPromotion(
         'Happy Schwarzenegger Weeks!',
         `The Expendables 8: I can't afford it`,
         Movie.NEW_RELEASE,
